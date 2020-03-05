@@ -6,10 +6,12 @@ class TextEditSidebar extends Component {
 
     // WE'LL MANAGE THE UI CONTROL
     // VALUES HERE
+
+    // values c
     this.state = {
       textColor: "#FF0000",
       fontSize: 100,
-      backgroundColor: "#FF0000", //chnaged
+      backgroundColor: "#FFFFFF", //chnaged
       borderRadius: 24 //changed
     };
   }
@@ -54,6 +56,16 @@ class TextEditSidebar extends Component {
 
   clickOnTextEdit = () => {
     console.log("Edit text button pressed");
+    var a = "Changed text hehe";
+    this.props.changeLogoCallback(
+      this.props.logo,
+      this.props.logo.key,
+      a,
+      this.state.textColor,
+      this.state.fontSize,
+      this.state.borderRadius,
+      this.state.backgroundColor
+    );
     //var a = prompt("New text");
   };
 

@@ -22,7 +22,7 @@ class Navbar extends React.Component {
 
   handleDeleteLogo = () => {
     console.log("handleDeleteLogo");
-    this.props.deleteLogo("7");
+    //this.props.deleteLogo("7");
   };
 
   render() {
@@ -37,7 +37,10 @@ class Navbar extends React.Component {
             goLogoLo
           </div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li style={{ cursor: "pointer" }} onClick={this.handleDeleteLogo}>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={this.props.deleteLogo.bind(this, this.props.logo.key)}
+            >
               &#128465;
             </li>
           </ul>

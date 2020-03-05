@@ -23,7 +23,12 @@ export const TransactionType = {
 export const LogoDefaults = {
   TEXT: "goLogoLo Logo",
   TEXT_COLOR: "#FF0000",
-  FONT_SIZE: 24
+  FONT_SIZE: "24px",
+  BORDER_RADIUS: "15px", //added
+  BACKGROUND_COLOR: "FFFFFF", //added
+  BORDER_THICKNESS: "5px", //added
+  PADDING: "20px",
+  MARGIN: "10px"
 };
 
 // App IS THE ROOT REACT COMPONENT, looks like starts here
@@ -37,6 +42,7 @@ class App extends Component {
 
     // MAKE OUR TRANSACTION PROCESSING SYSTEM
     this.tps = new jsTPS();
+    console.log("a");
 
     // CHECK TO SEE IF THERE IS DATA IN LOCAL STORAGE FOR THIS APP
     let recent_work = localStorage.getItem("recent_work");
@@ -211,7 +217,7 @@ class App extends Component {
   // THIS ADDS A DEFAULT NEW LOGO TO OUR LIST OF LOGOS
   addNewLogo = () => {
     console.log("addNewLogo");
-
+    //var a = prompt(" Name of logo");
     // MAKE WHAT THE UPDATED LOGO WILL BE WITH THE NEW LOGO, MAKING
     // SURE THEY ARE FIRST, AND MAKE THAT NEW LOGO THE ONE WE'LL EDIT
     let newLogoInList = [this.makeNewLogo()];
@@ -227,27 +233,32 @@ class App extends Component {
       },
       this.afterLogosChangeComplete
     );
+    //var a = 5;
   };
 
   // FOR MAKING A BRAND NEW LOGO
   makeNewLogo = () => {
+    //newLogo == VALUES IN A LOGO, IMPORTANT
     let newLogo = {
       key: this.getHighKey(this.state.logos),
       text: LogoDefaults.TEXT,
+      fontSize: LogoDefaults.FONT_SIZE,
       textColor: LogoDefaults.TEXT_COLOR,
-      fontSize: LogoDefaults.FONT_SIZE
+      backgroundColor: LogoDefaults.BACKGROUND_COLOR,
+      borderRadius: LogoDefaults.BORDER_RADIUS,
+      borderThickness: LogoDefaults.BORDER_THICKNESS,
+      padding: LogoDefaults.PADDING,
+      margin: LogoDefaults.MARGIN
     };
     return newLogo;
   };
 
   // DELETE THE LOGO WITH logoKey
-  deleteLogo = logoKey => {
-    console.log("logo to delete: " + logoKey);
-
+  deleteLogo = id => {
+    console.log("logo to delete: " + id);
+    //localStorage.removeItem("recent_work.");
     // UPDATE THE LIST OF LOGOS, REMOVING LOGO
-    const nextLogos = this.state.logos.filter(
-      testLogo => testLogo.key !== logoKey
-    );
+    const nextLogos = this.state.logos.filter(testLogo => testLogo.key !== id);
 
     console.log("size of nextLogos: " + nextLogos.length);
 
@@ -367,11 +378,11 @@ class App extends Component {
         return (
           <EditScreen
             logo={this.state.currentLogo} // DATA NEEDED BY THIS COMPONENT AND ITS DESCENDANTS
-            deleteLogo={this.deleteLogo}
             goToHomeCallback={this.goToHomeScreen} // NAVIGATION CALLBACK
             changeLogoCallback={this.buildChangeLogoTransaction} // TRANSACTION CALLBACK
             undoCallback={this.undo} // TRANSACTION CALLBACK
             canUndo={this.canUndo} // TRANSACTION CALLBACK
+            deleteLogo={this.deleteLogo}
           />
         );
       default:
