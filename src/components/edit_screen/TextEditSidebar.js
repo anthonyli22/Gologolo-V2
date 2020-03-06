@@ -57,7 +57,7 @@ class TextEditSidebar extends Component {
   handleThicknessChange = event => {
     console.log("handleThicknessChange to" + event.target.value);
     this.setState(
-      { borderThickness: event.target.value },
+      { borderWidth: event.target.value },
       this.completeUserEditing
     );
   };
@@ -80,9 +80,13 @@ class TextEditSidebar extends Component {
       this.props.logo.key,
       a,
       this.state.textColor,
+      this.state.borderColor,
       this.state.fontSize,
       this.state.borderRadius,
-      this.state.backgroundColor
+      this.state.backgroundColor,
+      this.state.borderWidth,
+      this.state.padding,
+      this.state.margin
     );
     //var a = prompt("New text");
   };
@@ -95,6 +99,7 @@ class TextEditSidebar extends Component {
       this.props.logo.key,
       this.props.logo.text,
       this.state.textColor,
+      this.state.borderColor,
       this.state.fontSize,
       this.state.borderRadius,
       this.state.backgroundColor,
@@ -169,7 +174,7 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="144"
+                  max="100"
                   onChange={this.handleFontSizeChange}
                   value={this.props.logo.fontSize}
                 />
@@ -182,7 +187,7 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="144"
+                  max="100"
                   onChange={this.handleBorderRadiusChange}
                   value={this.props.logo.borderRadius}
                 />
@@ -195,9 +200,9 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="144"
+                  max="100"
                   onChange={this.handleThicknessChange}
-                  value={this.props.logo.borderThickness}
+                  value={this.props.logo.borderWidth}
                 />
               </div>
             </div>
@@ -208,7 +213,7 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="144"
+                  max="100"
                   onChange={this.handlePaddingChange}
                   value={this.props.logo.padding}
                 />
@@ -221,7 +226,7 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="144"
+                  max="100"
                   onChange={this.handleMarginChange}
                   value={this.props.logo.margin}
                 />

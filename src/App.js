@@ -23,10 +23,11 @@ export const TransactionType = {
 export const LogoDefaults = {
   TEXT: "goLogoLo Logo",
   TEXT_COLOR: "#FF0000",
+  BORDER_COLOR: "FFFFFF",
   FONT_SIZE: "24px",
   BORDER_RADIUS: "15px", //added
   BACKGROUND_COLOR: "FFFFFF", //added
-  BORDER_THICKNESS: "5px", //added
+  BORDER_WIDTH: "5px", //added
   PADDING: "20px",
   MARGIN: "10px"
 };
@@ -153,6 +154,7 @@ class App extends Component {
     logoKey,
     newText,
     newTextColor,
+    newBorderColor,
     newFontSize,
     newBorderRadius,
     newBackgroundColor,
@@ -166,10 +168,11 @@ class App extends Component {
       key: logoKey,
       text: newText,
       textColor: newTextColor,
+      borderColor: newBorderColor,
       fontSize: newFontSize,
       borderRadius: newBorderRadius,
       backgroundColor: newBackgroundColor,
-      borderThickness: newBorderWidth,
+      borderWidth: newBorderWidth,
       padding: newPadding,
       margin: newMargin
     };
@@ -249,9 +252,10 @@ class App extends Component {
       text: LogoDefaults.TEXT,
       fontSize: LogoDefaults.FONT_SIZE,
       textColor: LogoDefaults.TEXT_COLOR,
+      borderColor: LogoDefaults.BORDER_COLOR,
       backgroundColor: LogoDefaults.BACKGROUND_COLOR,
       borderRadius: LogoDefaults.BORDER_RADIUS,
-      borderThickness: LogoDefaults.BORDER_THICKNESS,
+      borderWidth: LogoDefaults.BORDER_Width,
       padding: LogoDefaults.PADDING,
       margin: LogoDefaults.MARGIN
     };
