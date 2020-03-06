@@ -42,7 +42,6 @@ class App extends Component {
 
     // MAKE OUR TRANSACTION PROCESSING SYSTEM
     this.tps = new jsTPS();
-    console.log("a");
 
     // CHECK TO SEE IF THERE IS DATA IN LOCAL STORAGE FOR THIS APP
     let recent_work = localStorage.getItem("recent_work");
@@ -156,7 +155,10 @@ class App extends Component {
     newTextColor,
     newFontSize,
     newBorderRadius,
-    newBackgroundColor
+    newBackgroundColor,
+    newBorderWidth,
+    newPadding,
+    newMargin
   ) => {
     // THIS WILL BE THE LOGO AFTER THE CHANGE HAPPENS, NOTE WE BUILD
     // AN ENTIRELY NEW LOGO EACH TIME BUT IT SHOULD KEEP THE SAME KEY
@@ -166,7 +168,10 @@ class App extends Component {
       textColor: newTextColor,
       fontSize: newFontSize,
       borderRadius: newBorderRadius,
-      backgroundColor: newBackgroundColor
+      backgroundColor: newBackgroundColor,
+      borderThickness: newBorderWidth,
+      padding: newPadding,
+      margin: newMargin
     };
 
     // NOW BUILD THE TRANSACTION OBJECT

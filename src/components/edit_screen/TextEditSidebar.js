@@ -25,17 +25,25 @@ class TextEditSidebar extends Component {
     this.setState({ textColor: event.target.value }, this.completeUserEditing);
   };
 
-  handleFontSizeChange = event => {
-    console.log("handleFontSizeChange to " + event.target.value);
-    this.setState({ fontSize: event.target.value }, this.completeUserEditing);
-  };
-
   handleBackgroundColorChange = event => {
     console.log("handleBackgroundColorChange to" + event.target.value);
     this.setState(
       { backgroundColor: event.target.value },
       this.completeUserEditing
     );
+  };
+
+  handleBorderColorChange = event => {
+    console.log("handleBorderColorChange to" + event.target.value);
+    this.setState(
+      { borderColor: event.target.value },
+      this.completeUserEditing
+    );
+  };
+
+  handleFontSizeChange = event => {
+    console.log("handleFontSizeChange to " + event.target.value);
+    this.setState({ fontSize: event.target.value }, this.completeUserEditing);
   };
 
   handleBorderRadiusChange = event => {
@@ -49,9 +57,19 @@ class TextEditSidebar extends Component {
   handleThicknessChange = event => {
     console.log("handleThicknessChange to" + event.target.value);
     this.setState(
-      { handleThicknessChange: event.target.value },
+      { borderThickness: event.target.value },
       this.completeUserEditing
     );
+  };
+
+  handlePaddingChange = event => {
+    console.log("handlePaddingChange to" + event.target.value);
+    this.setState({ padding: event.target.value }, this.completeUserEditing);
+  };
+
+  handleMarginChange = event => {
+    console.log("handleMarginChange to" + event.target.value);
+    this.setState({ margin: event.target.value }, this.completeUserEditing);
   };
 
   clickOnTextEdit = () => {
@@ -79,7 +97,10 @@ class TextEditSidebar extends Component {
       this.state.textColor,
       this.state.fontSize,
       this.state.borderRadius,
-      this.state.backgroundColor
+      this.state.backgroundColor,
+      this.state.borderWidth,
+      this.state.padding,
+      this.state.margin
     );
   };
 
@@ -136,8 +157,8 @@ class TextEditSidebar extends Component {
               <div className="col s8">
                 <input
                   type="color"
-                  onChange={this.handleBackgroundColorChange}
-                  value={this.props.logo.backgroundColor}
+                  onChange={this.handleBorderColorChange}
+                  value={this.props.logo.borderColor}
                 />
               </div>
             </div>
@@ -175,8 +196,8 @@ class TextEditSidebar extends Component {
                   type="range"
                   min="4"
                   max="144"
-                  onChange={this.handleBorderRadiusChange}
-                  value={this.props.logo.borderRadius}
+                  onChange={this.handleThicknessChange}
+                  value={this.props.logo.borderThickness}
                 />
               </div>
             </div>
@@ -188,8 +209,8 @@ class TextEditSidebar extends Component {
                   type="range"
                   min="4"
                   max="144"
-                  onChange={this.handleBorderRadiusChange}
-                  value={this.props.logo.borderRadius}
+                  onChange={this.handlePaddingChange}
+                  value={this.props.logo.padding}
                 />
               </div>
             </div>
@@ -201,8 +222,8 @@ class TextEditSidebar extends Component {
                   type="range"
                   min="4"
                   max="144"
-                  onChange={this.handleBorderRadiusChange}
-                  value={this.props.logo.borderRadius}
+                  onChange={this.handleMarginChange}
+                  value={this.props.logo.margin}
                 />
               </div>
             </div>

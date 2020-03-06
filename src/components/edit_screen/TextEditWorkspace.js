@@ -8,7 +8,11 @@ class TextEditWorkspace extends Component {
         color: this.props.logo.textColor,
         fontSize: this.props.logo.fontSize + "pt",
         backgroundColor: this.props.logo.backgroundColor, //changed
-        borderRadius: this.props.logo.borderRadius + "pt" //changed
+        borderRadius: this.props.logo.borderRadius + "pt", //changed
+        borderColor: this.props.logo.borderColor,
+        borderThickness: this.props.logo.borderWidth + "pt",
+        padding: this.props.logo.padding + "pt",
+        margin: this.props.logo.margin + "pt"
       }
     };
     return (
