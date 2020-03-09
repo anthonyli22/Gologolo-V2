@@ -198,6 +198,10 @@ class App extends Component {
     this.tps.undoTransaction();
   };
 
+  redo = () => {
+    this.tps.doTransaction();
+  };
+
   /**
    * resetTransactions - This method clears all the transactions in
    * the undo/redo stack, which should be done every time the logo
@@ -214,6 +218,10 @@ class App extends Component {
    */
   canUndo = () => {
     return this.tps.hasTransactionToUndo();
+  };
+
+  canRedo = () => {
+    return this.tps.hasTransactionToRedo();
   };
 
   // THERE ARE SEVEN FUNCTIONS FOR UPDATING THE App state, TWO OF
@@ -265,7 +273,6 @@ class App extends Component {
   // DELETE THE LOGO WITH logoKey
   deleteLogo = id => {
     console.log("logo to delete: " + id);
-    //localStorage.removeItem("recent_work.");
     // UPDATE THE LIST OF LOGOS, REMOVING LOGO
     const nextLogos = this.state.logos.filter(testLogo => testLogo.key !== id);
 
@@ -337,6 +344,8 @@ class App extends Component {
       "App afterLogoDeleted logos: " + this.logosToString(this.state.logos)
     );
     // FIRST GO HOME
+    let logosString = JSON.stringify(this.state.logos);
+    localStorage.setItem("recent_work", logosString);
     this.goToHomeScreen();
   };
 
@@ -391,6 +400,8 @@ class App extends Component {
             changeLogoCallback={this.buildChangeLogoTransaction} // TRANSACTION CALLBACK
             undoCallback={this.undo} // TRANSACTION CALLBACK
             canUndo={this.canUndo} // TRANSACTION CALLBACK
+            canRedo={this.canRedo}
+            redoCallback={this.redo}
             deleteLogo={this.deleteLogo}
           />
         );

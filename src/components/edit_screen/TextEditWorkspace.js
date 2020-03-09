@@ -13,7 +13,8 @@ class TextEditWorkspace extends Component {
         borderWidth: this.props.logo.borderWidth + "pt",
         padding: this.props.logo.padding + "pt",
         margin: this.props.logo.margin + "pt",
-        borderStyle: "solid"
+        borderStyle: "solid",
+        width: "auto"
       }
     };
     return (

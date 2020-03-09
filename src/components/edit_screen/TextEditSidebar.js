@@ -1,23 +1,51 @@
 import React, { Component } from "react";
+import { Modal, Button } from "react-materialize";
+import TextInput from "react-materialize/lib/TextInput";
 
 class TextEditSidebar extends Component {
-  constructor() {
-    super();
-
+  tex = "placeholder";
+  constructor(props) {
+    super(props);
     // WE'LL MANAGE THE UI CONTROL
     // VALUES HERE
 
     // values c
     this.state = {
-      textColor: "#FF0000",
-      fontSize: 100,
-      backgroundColor: "#FFFFFF", //chnaged
-      borderRadius: 24 //changed
+      text: this.props.logo.text,
+      textColor: this.props.logo.textColor,
+      fontSize: this.props.logo.fontSize,
+      borderColor: this.props.logo.borderColor,
+      backgroundColor: this.props.logo.backgroundColor, //chnaged
+      borderRadius: this.props.logo.borderRadius, //changed
+      borderWidth: this.props.logo.borderWidth,
+      padding: this.props.logo.padding,
+      margin: this.props.logo.margin
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      console.log("updating component");
+      this.setState({
+        text: this.props.logo.text,
+        textColor: this.props.logo.textColor,
+        fontSize: this.props.logo.fontSize,
+        borderColor: this.props.logo.borderColor,
+        backgroundColor: this.props.logo.backgroundColor, //chnaged
+        borderRadius: this.props.logo.borderRadius, //changed
+        borderWidth: this.props.logo.borderWidth,
+        padding: this.props.logo.padding,
+        margin: this.props.logo.margin
+      });
+    }
   }
 
   handleUndo = () => {
     this.props.undoCallback();
+  };
+
+  handleRedo = () => {
+    this.props.redoCallback();
   };
 
   handleTextColorChange = event => {
@@ -74,7 +102,8 @@ class TextEditSidebar extends Component {
 
   clickOnTextEdit = () => {
     console.log("Edit text button pressed");
-    var a = "Changed text hehe";
+
+    var a = "Changed hehe";
     this.props.changeLogoCallback(
       this.props.logo,
       this.props.logo.key,
@@ -108,33 +137,56 @@ class TextEditSidebar extends Component {
       this.state.margin
     );
   };
+  changeT = a => {
+    this.props.logo.text = "Yuumi!";
+  };
 
   render() {
     let undoDisabled = !this.props.canUndo();
+    let redoDisabled = !this.props.canRedo();
     let undoClass = "waves-effect waves-light btn-small";
+    let redoClass = "waves-effect waves-light btn-small";
     if (undoDisabled) undoClass += " disabled";
+    if (redoDisabled) redoClass += " disabled";
+    //let redoClass = "waves-effect btn-small waves-light";
     return (
       <div className="card-panel col s4">
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
-            <button
-              className="waves-effect waves-light btn-small"
+            {/* <Modal
+              trigger={<button>&#9998;</button>}
+              className="waves-effect waves-light btn modal-trigger .modal-close" //waves-effect waves-light btn-small
               onClick={this.clickOnTextEdit}
             >
               &#9998;
-            </button>
+            </Modal> */}
+            <Modal header="Edit Text Here" trigger={<Button>&#9998;</Button>}>
+              <TextInput
+                id="5"
+                data-length={25}
+                label="Input Text"
+                onChange={this.changeT}
+              />
+              <Button
+                node="button"
+                waves="light"
+                onClick={this.clickOnTextEdit}
+              >
+                {" "}
+                Enter
+              </Button>
+            </Modal>
+            {/* onClick={this.clickOnTextEdit.bind(this, this.), } */}
             <button className={undoClass} onClick={this.handleUndo}>
               Undo
             </button>
-            <button className={undoClass} onClick={this.handleUndo}>
+            <button className={redoClass} onClick={this.handleRedo}>
               Redo
             </button>
           </div>
         </div>
         <div className="card blue-grey darken-1">
           <div className="card-content white-text">
-            <span className="card-title">Text</span>
-
             <div className="row">
               <div className="col s4">Color:</div>
               <div className="col s8">
@@ -174,7 +226,7 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="100"
+                  max="40"
                   onChange={this.handleFontSizeChange}
                   value={this.props.logo.fontSize}
                 />
@@ -185,12 +237,16 @@ class TextEditSidebar extends Component {
               <div className="col s4">Border Radius:</div>
               <div className="col s8">
                 <input
+                  id="font_size"
                   type="range"
                   min="4"
-                  max="100"
+                  max="50"
                   onChange={this.handleBorderRadiusChange}
                   value={this.props.logo.borderRadius}
                 />
+                <label style={{ alignContent: "right" }}>
+                  {this.props.logo.borderRadius}
+                </label>
               </div>
             </div>
 
@@ -200,7 +256,7 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="100"
+                  max="50"
                   onChange={this.handleThicknessChange}
                   value={this.props.logo.borderWidth}
                 />
@@ -213,7 +269,7 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="100"
+                  max="40"
                   onChange={this.handlePaddingChange}
                   value={this.props.logo.padding}
                 />
@@ -226,7 +282,7 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="100"
+                  max="40"
                   onChange={this.handleMarginChange}
                   value={this.props.logo.margin}
                 />

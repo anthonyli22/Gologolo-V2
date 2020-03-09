@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Modal, Button } from "react-materialize";
+//const delModal = <Modal> Delete? </Modal>;
 class Navbar extends React.Component {
   constructor() {
     super();
@@ -20,11 +21,6 @@ class Navbar extends React.Component {
     this.props.goToHomeCallback();
   };
 
-  handleDeleteLogo = () => {
-    console.log("handleDeleteLogo");
-    //this.props.deleteLogo("7");
-  };
-
   render() {
     return (
       <nav>
@@ -37,16 +33,20 @@ class Navbar extends React.Component {
             goLogoLo
           </div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li
-              style={{ cursor: "pointer" }}
-              onClick={this.props.deleteLogo.bind(this, this.props.logo.key)}
+            <Modal
+              trigger={<Button style={{ cursor: "pointer" }}>&#128465;</Button>}
             >
-              &#128465;
-            </li>
+              <Button
+                onClick={this.props.deleteLogo.bind(this, this.props.logo.key)}
+              >
+                {" "}
+                Yes{" "}
+              </Button>
+            </Modal>
           </ul>
         </div>
       </nav>
-    ); //onClick={this.props.deleteLogo} == ^
+    ); //this.props.deleteLogo.bind(this, this.props.logo.key)
   }
 }
 

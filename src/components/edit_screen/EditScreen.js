@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Navbar from "./Navbar.js";
 import TextEditSidebar from "./TextEditSidebar.js";
 import TextEditWorkspace from "./TextEditWorkspace.js";
+import {} from "react-keyboard-event-handler";
 
 export class EditScreen extends Component {
   constructor(props) {
@@ -39,7 +40,9 @@ export class EditScreen extends Component {
             logo={this.props.logo}
             changeLogoCallback={this.props.changeLogoCallback}
             undoCallback={this.props.undoCallback}
+            redoCallback={this.props.redoCallback}
             canUndo={this.props.canUndo}
+            canRedo={this.props.canRedo}
           />
           <TextEditWorkspace logo={this.props.logo} />
         </div>
