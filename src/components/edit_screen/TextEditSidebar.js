@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-materialize";
 import TextInput from "react-materialize/lib/TextInput";
+//import { KeyboardEventHandler } from "react-keyboard-event-handler";
 
 class TextEditSidebar extends Component {
-  tex = "placeholder";
+  textPlaceHolder = "";
   constructor(props) {
     super(props);
     // WE'LL MANAGE THE UI CONTROL
@@ -19,7 +20,8 @@ class TextEditSidebar extends Component {
       borderRadius: this.props.logo.borderRadius, //changed
       borderWidth: this.props.logo.borderWidth,
       padding: this.props.logo.padding,
-      margin: this.props.logo.margin
+      margin: this.props.logo.margin,
+      modal: true
     };
   }
 
@@ -35,10 +37,41 @@ class TextEditSidebar extends Component {
         borderRadius: this.props.logo.borderRadius, //changed
         borderWidth: this.props.logo.borderWidth,
         padding: this.props.logo.padding,
-        margin: this.props.logo.margin
+        margin: this.props.logo.margin,
+        modal: this.state.modal
       });
     }
   }
+
+  openModal = () => {
+    this.setState = {
+      text: this.props.logo.text,
+      textColor: this.props.logo.textColor,
+      fontSize: this.props.logo.fontSize,
+      borderColor: this.props.logo.borderColor,
+      backgroundColor: this.props.logo.backgroundColor, //chnaged
+      borderRadius: this.props.logo.borderRadius, //changed
+      borderWidth: this.props.logo.borderWidth,
+      padding: this.props.logo.padding,
+      margin: this.props.logo.margin,
+      modal: false
+    };
+  };
+
+  closeModal = () => {
+    this.setState = {
+      text: this.props.logo.text,
+      textColor: this.props.logo.textColor,
+      fontSize: this.props.logo.fontSize,
+      borderColor: this.props.logo.borderColor,
+      backgroundColor: this.props.logo.backgroundColor, //chnaged
+      borderRadius: this.props.logo.borderRadius, //changed
+      borderWidth: this.props.logo.borderWidth,
+      padding: this.props.logo.padding,
+      margin: this.props.logo.margin,
+      modal: true
+    };
+  };
 
   handleUndo = () => {
     this.props.undoCallback();
@@ -100,14 +133,16 @@ class TextEditSidebar extends Component {
     this.setState({ margin: event.target.value }, this.completeUserEditing);
   };
 
-  clickOnTextEdit = () => {
+  clickOnTextEdit = event => {
     console.log("Edit text button pressed");
-
-    var a = "Changed hehe";
+    if (this.textPlaceHolder.length < 1) {
+      this.textPlaceHolder = " Less Than 1";
+    }
+    //var a = "Changed hehe";
     this.props.changeLogoCallback(
       this.props.logo,
       this.props.logo.key,
-      a,
+      this.textPlaceHolder,
       this.state.textColor,
       this.state.borderColor,
       this.state.fontSize,
@@ -118,6 +153,10 @@ class TextEditSidebar extends Component {
       this.state.margin
     );
     //var a = prompt("New text");
+  };
+
+  changedText = event => {
+    this.textPlaceHolder = event.target.value;
   };
 
   completeUserEditing = () => {
@@ -136,9 +175,6 @@ class TextEditSidebar extends Component {
       this.state.padding,
       this.state.margin
     );
-  };
-  changeT = a => {
-    this.props.logo.text = "Yuumi!";
   };
 
   render() {
@@ -160,16 +196,28 @@ class TextEditSidebar extends Component {
             >
               &#9998;
             </Modal> */}
-            <Modal header="Edit Text Here" trigger={<Button>&#9998;</Button>}>
+            <Modal
+              header="Edit Text Here"
+              trigger={<Button>&#9998;</Button>}
+              open={!this.state.modal}
+              error={"Length cannot be less than 1"}
+            >
               <TextInput
-                id="5"
+                id="text_input"
                 data-length={25}
                 label="Input Text"
-                onChange={this.changeT}
+                onChange={this.changedText}
+                defaultValue={this.state.text}
               />
               <Button
                 node="button"
                 waves="light"
+                // onClick={() => {
+                //   this.clickOnTextEdit("text_input");
+                // }}
+                // onClick={() => {
+                //   this.closeModal();
+                // }}
                 onClick={this.clickOnTextEdit}
               >
                 {" "}
@@ -222,7 +270,7 @@ class TextEditSidebar extends Component {
 
             <div className="row">
               <div className="col s4">Font Size:</div>
-              <div className="col s8">
+              <div className="col s8 input-field">
                 <input
                   type="range"
                   min="4"
@@ -230,21 +278,23 @@ class TextEditSidebar extends Component {
                   onChange={this.handleFontSizeChange}
                   value={this.props.logo.fontSize}
                 />
+                <label style={{ left: "-1rem" }}>
+                  {this.props.logo.fontSize}
+                </label>
               </div>
             </div>
 
             <div className="row">
               <div className="col s4">Border Radius:</div>
-              <div className="col s8">
+              <div className="col s8 input-field">
                 <input
-                  id="font_size"
                   type="range"
                   min="4"
                   max="50"
                   onChange={this.handleBorderRadiusChange}
                   value={this.props.logo.borderRadius}
                 />
-                <label style={{ alignContent: "right" }}>
+                <label style={{ left: "-1rem" }}>
                   {this.props.logo.borderRadius}
                 </label>
               </div>
@@ -252,7 +302,7 @@ class TextEditSidebar extends Component {
 
             <div className="row">
               <div className="col s4">Border THICkness:</div>
-              <div className="col s8">
+              <div className="col s8 input-field">
                 <input
                   type="range"
                   min="4"
@@ -260,12 +310,15 @@ class TextEditSidebar extends Component {
                   onChange={this.handleThicknessChange}
                   value={this.props.logo.borderWidth}
                 />
+                <label style={{ left: "-1rem" }}>
+                  {this.props.logo.borderWidth}
+                </label>
               </div>
             </div>
 
             <div className="row">
               <div className="col s4">Padding:</div>
-              <div className="col s8">
+              <div className="col s8 input-field">
                 <input
                   type="range"
                   min="4"
@@ -273,12 +326,15 @@ class TextEditSidebar extends Component {
                   onChange={this.handlePaddingChange}
                   value={this.props.logo.padding}
                 />
+                <label style={{ left: "-1rem" }}>
+                  {this.props.logo.padding}
+                </label>
               </div>
             </div>
 
             <div className="row">
               <div className="col s4">Margin:</div>
-              <div className="col s8">
+              <div className="col s8 input-field">
                 <input
                   type="range"
                   min="4"
@@ -286,6 +342,9 @@ class TextEditSidebar extends Component {
                   onChange={this.handleMarginChange}
                   value={this.props.logo.margin}
                 />
+                <label style={{ left: "-1rem" }}>
+                  {this.props.logo.margin}
+                </label>
               </div>
             </div>
           </div>

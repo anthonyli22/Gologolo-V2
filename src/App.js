@@ -23,13 +23,13 @@ export const TransactionType = {
 export const LogoDefaults = {
   TEXT: "goLogoLo Logo",
   TEXT_COLOR: "#FF0000",
-  BORDER_COLOR: "FFFFFF",
-  FONT_SIZE: "24px",
-  BORDER_RADIUS: "15px", //added
-  BACKGROUND_COLOR: "FFFFFF", //added
-  BORDER_WIDTH: "5px", //added
-  PADDING: "20px",
-  MARGIN: "10px"
+  BORDER_COLOR: "000000",
+  FONT_SIZE: 24,
+  BORDER_RADIUS: 15, //added
+  BACKGROUND_COLOR: "000000", //added
+  BORDER_WIDTH: 5, //added
+  PADDING: 20,
+  MARGIN: 10
 };
 
 // App IS THE ROOT REACT COMPONENT, looks like starts here
@@ -259,11 +259,11 @@ class App extends Component {
       key: this.getHighKey(this.state.logos),
       text: LogoDefaults.TEXT,
       fontSize: LogoDefaults.FONT_SIZE,
-      textColor: LogoDefaults.TEXT_COLOR,
-      borderColor: LogoDefaults.BORDER_COLOR,
-      backgroundColor: LogoDefaults.BACKGROUND_COLOR,
+      textColor: "#FFD700",
+      borderColor: "#7FFFD4",
+      backgroundColor: "#FF6347",
       borderRadius: LogoDefaults.BORDER_RADIUS,
-      borderWidth: LogoDefaults.BORDER_Width,
+      borderWidth: LogoDefaults.BORDER_WIDTH,
       padding: LogoDefaults.PADDING,
       margin: LogoDefaults.MARGIN
     };
