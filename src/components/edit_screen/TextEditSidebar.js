@@ -43,35 +43,35 @@ class TextEditSidebar extends Component {
     }
   }
 
-  openModal = () => {
-    this.setState = {
-      text: this.props.logo.text,
-      textColor: this.props.logo.textColor,
-      fontSize: this.props.logo.fontSize,
-      borderColor: this.props.logo.borderColor,
-      backgroundColor: this.props.logo.backgroundColor, //chnaged
-      borderRadius: this.props.logo.borderRadius, //changed
-      borderWidth: this.props.logo.borderWidth,
-      padding: this.props.logo.padding,
-      margin: this.props.logo.margin,
-      modal: false
-    };
-  };
+  // openModal = () => {
+  //   this.setState = {
+  //     text: this.props.logo.text,
+  //     textColor: this.props.logo.textColor,
+  //     fontSize: this.props.logo.fontSize,
+  //     borderColor: this.props.logo.borderColor,
+  //     backgroundColor: this.props.logo.backgroundColor, //chnaged
+  //     borderRadius: this.props.logo.borderRadius, //changed
+  //     borderWidth: this.props.logo.borderWidth,
+  //     padding: this.props.logo.padding,
+  //     margin: this.props.logo.margin,
+  //     modal: false
+  //   };
+  // };
 
-  closeModal = () => {
-    this.setState = {
-      text: this.props.logo.text,
-      textColor: this.props.logo.textColor,
-      fontSize: this.props.logo.fontSize,
-      borderColor: this.props.logo.borderColor,
-      backgroundColor: this.props.logo.backgroundColor, //chnaged
-      borderRadius: this.props.logo.borderRadius, //changed
-      borderWidth: this.props.logo.borderWidth,
-      padding: this.props.logo.padding,
-      margin: this.props.logo.margin,
-      modal: true
-    };
-  };
+  // closeModal = () => {
+  //   this.setState = {
+  //     text: this.props.logo.text,
+  //     textColor: this.props.logo.textColor,
+  //     fontSize: this.props.logo.fontSize,
+  //     borderColor: this.props.logo.borderColor,
+  //     backgroundColor: this.props.logo.backgroundColor, //chnaged
+  //     borderRadius: this.props.logo.borderRadius, //changed
+  //     borderWidth: this.props.logo.borderWidth,
+  //     padding: this.props.logo.padding,
+  //     margin: this.props.logo.margin,
+  //     modal: true
+  //   };
+  // };
 
   handleUndo = () => {
     this.props.undoCallback();
@@ -135,23 +135,24 @@ class TextEditSidebar extends Component {
 
   clickOnTextEdit = event => {
     console.log("Edit text button pressed");
+    this.textPlaceHolder = this.textPlaceHolder.trim();
     if (this.textPlaceHolder.length < 1) {
-      this.textPlaceHolder = " Less Than 1";
+      //this.textPlaceHolder = " Less Than 1";
+    } else {
+      this.props.changeLogoCallback(
+        this.props.logo,
+        this.props.logo.key,
+        this.textPlaceHolder,
+        this.state.textColor,
+        this.state.borderColor,
+        this.state.fontSize,
+        this.state.borderRadius,
+        this.state.backgroundColor,
+        this.state.borderWidth,
+        this.state.padding,
+        this.state.margin
+      );
     }
-    //var a = "Changed hehe";
-    this.props.changeLogoCallback(
-      this.props.logo,
-      this.props.logo.key,
-      this.textPlaceHolder,
-      this.state.textColor,
-      this.state.borderColor,
-      this.state.fontSize,
-      this.state.borderRadius,
-      this.state.backgroundColor,
-      this.state.borderWidth,
-      this.state.padding,
-      this.state.margin
-    );
     //var a = prompt("New text");
   };
 
@@ -200,14 +201,13 @@ class TextEditSidebar extends Component {
               header="Edit Text Here"
               trigger={<Button>&#9998;</Button>}
               open={!this.state.modal}
-              error={"Length cannot be less than 1"}
             >
               <TextInput
                 id="text_input"
-                data-length={25}
                 label="Input Text"
                 onChange={this.changedText}
                 defaultValue={this.state.text}
+                error={"Length cannot be less than 1"}
               />
               <Button
                 node="button"
@@ -322,7 +322,7 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="40"
+                  max="60"
                   onChange={this.handlePaddingChange}
                   value={this.props.logo.padding}
                 />
@@ -338,7 +338,7 @@ class TextEditSidebar extends Component {
                 <input
                   type="range"
                   min="4"
-                  max="40"
+                  max="60"
                   onChange={this.handleMarginChange}
                   value={this.props.logo.margin}
                 />
