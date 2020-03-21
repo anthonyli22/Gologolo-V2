@@ -36,11 +36,7 @@ class HomeScreen extends Component {
           />
         </div>
         <div className="col s8">
-          <div id="home_banner_container">
-            @todo
-            <br />
-            Logo Maker
-          </div>
+          <div id="home_banner_container">Logo Maker App</div>
           <div>
             <button
               style={{ cursor: "pointer" }}

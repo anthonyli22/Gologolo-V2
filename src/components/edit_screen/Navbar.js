@@ -34,6 +34,7 @@ class Navbar extends React.Component {
           </div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <Modal
+              header="Press yes to delete or cancel to escape"
               trigger={<Button style={{ cursor: "pointer" }}>&#128465;</Button>}
             >
               <Button

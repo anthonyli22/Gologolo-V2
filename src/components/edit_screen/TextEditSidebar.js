@@ -135,8 +135,8 @@ class TextEditSidebar extends Component {
 
   clickOnTextEdit = event => {
     console.log("Edit text button pressed");
-    this.textPlaceHolder = this.textPlaceHolder.trim();
-    if (this.textPlaceHolder.length < 1) {
+    //this.textPlaceHolder = this.textPlaceHolder.trim();
+    if (this.textPlaceHolder.trim().length < 1) {
       //this.textPlaceHolder = " Less Than 1";
     } else {
       this.props.changeLogoCallback(
@@ -198,7 +198,7 @@ class TextEditSidebar extends Component {
               &#9998;
             </Modal> */}
             <Modal
-              header="Edit Text Here"
+              header="Edit Text Here (all whitespaces will be rejected)"
               trigger={<Button>&#9998;</Button>}
               open={!this.state.modal}
             >
@@ -278,7 +278,7 @@ class TextEditSidebar extends Component {
                   onChange={this.handleFontSizeChange}
                   value={this.props.logo.fontSize}
                 />
-                <label style={{ left: "-1rem" }}>
+                <label style={{ left: "-1rem", color: "white" }}>
                   {this.props.logo.fontSize}
                 </label>
               </div>
@@ -294,14 +294,14 @@ class TextEditSidebar extends Component {
                   onChange={this.handleBorderRadiusChange}
                   value={this.props.logo.borderRadius}
                 />
-                <label style={{ left: "-1rem" }}>
+                <label style={{ left: "-1rem", color: "white" }}>
                   {this.props.logo.borderRadius}
                 </label>
               </div>
             </div>
 
             <div className="row">
-              <div className="col s4">Border THICkness:</div>
+              <div className="col s4">Border Thickness:</div>
               <div className="col s8 input-field">
                 <input
                   type="range"
@@ -310,7 +310,7 @@ class TextEditSidebar extends Component {
                   onChange={this.handleThicknessChange}
                   value={this.props.logo.borderWidth}
                 />
-                <label style={{ left: "-1rem" }}>
+                <label style={{ left: "-1rem", color: "white" }}>
                   {this.props.logo.borderWidth}
                 </label>
               </div>
@@ -326,7 +326,7 @@ class TextEditSidebar extends Component {
                   onChange={this.handlePaddingChange}
                   value={this.props.logo.padding}
                 />
-                <label style={{ left: "-1rem" }}>
+                <label style={{ left: "-1rem", color: "white" }}>
                   {this.props.logo.padding}
                 </label>
               </div>
@@ -342,7 +342,7 @@ class TextEditSidebar extends Component {
                   onChange={this.handleMarginChange}
                   value={this.props.logo.margin}
                 />
-                <label style={{ left: "-1rem" }}>
+                <label style={{ left: "-1rem", color: "white" }}>
                   {this.props.logo.margin}
                 </label>
               </div>

@@ -14,12 +14,15 @@ class TextEditWorkspace extends Component {
         padding: this.props.logo.padding + "pt",
         margin: this.props.logo.margin + "pt",
         borderStyle: "solid",
-        width: "auto"
+        width: "auto",
+        whiteSpace: "pre-wrap",
+        minwidth: "max-content",
+        position: "absolute"
       }
     };
     return (
-      <div className="col s8" style={styles.container}>
-        {this.props.logo.text}
+      <div className="col s8" style={{ overflow: "auto" }}>
+        <div style={styles.container}>{this.props.logo.text}</div>
       </div>
     );
   }
